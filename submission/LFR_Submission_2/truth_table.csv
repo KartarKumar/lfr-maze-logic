@@ -1,0 +1,33 @@
+n,A,B,C,D,E,pattern,action,LF,LB,RF,RB,note
+0,0,0,0,0,0,00000,STRAIGHT,1,0,1,0,No walls. Line in the gap.
+1,0,0,0,0,1,00001,RIGHT,1,0,0,1,Front open. Line under E → correct right.
+2,0,0,0,1,0,00010,LEFT,0,1,1,0,Front open. Line under D → correct left.
+3,0,0,0,1,1,00011,STRAIGHT,1,0,1,0,Front open. Wide centered line.
+4,0,0,1,0,0,00100,STRAIGHT,1,0,1,0,Right wall only. Line in the gap.
+5,0,0,1,0,1,00101,RIGHT,1,0,0,1,Front open. Line under E.
+6,0,0,1,1,0,00110,LEFT,0,1,1,0,Front open. Line under D.
+7,0,0,1,1,1,00111,STRAIGHT,1,0,1,0,Right wall. Wide centered line.
+8,0,1,0,0,0,01000,LEFT,0,1,1,0,"Wall ahead, both sides open, line still in the gap → left."
+9,0,1,0,0,1,01001,RIGHT,1,0,0,1,"Wall ahead, both sides open, line under E → right."
+10,0,1,0,1,0,01010,LEFT,0,1,1,0,"Wall ahead, both sides open, line under D → left."
+11,0,1,0,1,1,01011,LEFT,0,1,1,0,"Wall ahead, both sides open, wide line → left."
+12,0,1,1,0,0,01100,LEFT,0,1,1,0,"Wall ahead, right blocked, left open."
+13,0,1,1,0,1,01101,LEFT,0,1,1,0,Dead-end-like on the right. Turn left.
+14,0,1,1,1,0,01110,LEFT,0,1,1,0,"Wall ahead, only left open."
+15,0,1,1,1,1,01111,LEFT,0,1,1,0,"Wall ahead, only left open."
+16,1,0,0,0,0,10000,STRAIGHT,1,0,1,0,Left wall only. Line in the gap.
+17,1,0,0,0,1,10001,RIGHT,1,0,0,1,Front open. Line under E.
+18,1,0,0,1,0,10010,LEFT,0,1,1,0,Front open. Line under D.
+19,1,0,0,1,1,10011,STRAIGHT,1,0,1,0,Left wall. Wide centered line.
+20,1,0,1,0,0,10100,STRAIGHT,1,0,1,0,"Corridor. Walls both sides, front open, line in the gap."
+21,1,0,1,0,1,10101,RIGHT,1,0,0,1,Corridor. Line slipped under E → correct right.
+22,1,0,1,1,0,10110,LEFT,0,1,1,0,Corridor. Line slipped under D → correct left.
+23,1,0,1,1,1,10111,STRAIGHT,1,0,1,0,"Corridor. Wide line, still centered."
+24,1,1,0,0,0,11000,RIGHT,1,0,0,1,"Wall ahead, left blocked, right open."
+25,1,1,0,0,1,11001,RIGHT,1,0,0,1,"Wall ahead, only right open."
+26,1,1,0,1,0,11010,RIGHT,1,0,0,1,"Wall ahead, only right open."
+27,1,1,0,1,1,11011,RIGHT,1,0,0,1,"Wall ahead, only right open."
+28,1,1,1,0,0,11100,REVERSE,0,1,0,1,DEAD END. Reverse.
+29,1,1,1,0,1,11101,REVERSE,0,1,0,1,DEAD END. Reverse.
+30,1,1,1,1,0,11110,REVERSE,0,1,0,1,DEAD END. Reverse.
+31,1,1,1,1,1,11111,REVERSE,0,1,0,1,DEAD END. Reverse.

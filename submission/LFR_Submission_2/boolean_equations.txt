@@ -1,0 +1,16 @@
+LFR Maze — Submission 2 — Minimized equations
+A,B,C = wall sensors (1 = wall). D,E = line sensors (1 = black).
+
+LEFT     = A'BC + A'BD + A'B E' + D B' E'
+RIGHT    = A B C' + B' D' E + C' D' E
+STRAIGHT = B' D E + B' D' E' = B'(DE + D'E')
+REVERSE  = A B C          (dead end: reverse)
+
+LF = STRAIGHT + RIGHT     (IN1, left forward)
+LB = LEFT + REVERSE       (IN2, left backward)
+   = B C + A' B D + A' B E' + B' D E'
+RF = STRAIGHT + LEFT      (IN3, right forward)
+RB = RIGHT + REVERSE      (IN4, right backward)
+   = A B + B' D' E + C' D' E
+
+A' means NOT A.
