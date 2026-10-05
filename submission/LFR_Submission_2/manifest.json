@@ -1,0 +1,17 @@
+{
+  "title": "LFR Submission 2",
+  "members": [
+    "Raman Kumar 32373",
+    "Kartar Kumar 32379",
+    "Bilal Ahmed 32351",
+    "Ramsha Qasim 32362"
+  ],
+  "dead_end": "A=B=C=1 → REVERSE",
+  "sensor_encoding": {
+    "A": "left wall",
+    "B": "front wall",
+    "C": "right wall",
+    "D": "line left",
+    "E": "line right"
+  }
+}

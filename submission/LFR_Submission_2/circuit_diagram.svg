@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 640" font-family="DejaVu Sans, Arial, sans-serif">
+  <rect width="980" height="640" fill="#faf6ee"/>
+  <text x="28" y="36" font-size="20" font-weight="700" fill="#1c1915">LFR combinational circuit — 74HC gates to L298N</text>
+  <text x="28" y="58" font-size="12" fill="#5c5348">A,B,C = walls (1=close). D,E = line (1=black). Reverse on dead end A·B·C.</text>
+
+  <rect x="24" y="78" width="170" height="250" rx="10" fill="#fff" stroke="#2a2622"/>
+  <text x="40" y="104" font-size="14" font-weight="700">Inputs</text>
+  <text x="40" y="128" font-size="13">A left wall</text>
+  <text x="40" y="148" font-size="13">B front wall</text>
+  <text x="40" y="168" font-size="13">C right wall</text>
+  <text x="40" y="188" font-size="13">D left line</text>
+  <text x="40" y="208" font-size="13">E right line</text>
+  <text x="40" y="240" font-size="12" fill="#5c5348">74HC04 makes</text>
+  <text x="40" y="258" font-size="12" fill="#5c5348">A', B', C', D', E'</text>
+  <text x="40" y="286" font-size="12">1 chip 74HC04</text>
+
+  <rect x="220" y="78" width="360" height="250" rx="10" fill="#fff" stroke="#2a2622"/>
+  <text x="236" y="104" font-size="14" font-weight="700">Shared products</text>
+  <text x="236" y="130" font-size="13">P1 = D · E'     (line under D)</text>
+  <text x="236" y="152" font-size="13">P2 = D' · E     (line under E)</text>
+  <text x="236" y="174" font-size="13">REV = A · B · C  (dead end)</text>
+  <text x="236" y="196" font-size="13">WL  = A' · B · (C + D + E')</text>
+  <text x="236" y="218" font-size="13">WR  = B · C' · (A + P2)</text>
+  <text x="236" y="250" font-size="12" fill="#5c5348">WL = left at a wall. WR = right at a wall.</text>
+  <text x="236" y="272" font-size="12" fill="#5c5348">3-input OR = two 74HC32 gates.</text>
+  <text x="236" y="302" font-size="12">AND/OR: 74HC08 × 3, 74HC32 × 3</text>
+
+  <rect x="610" y="78" width="346" height="250" rx="10" fill="#fff" stroke="#2a2622"/>
+  <text x="626" y="104" font-size="14" font-weight="700">Motor combiner</text>
+  <text x="626" y="132" font-size="13">LEFT  = WL + B'·P1</text>
+  <text x="626" y="154" font-size="13">RIGHT = WR + B'·P2</text>
+  <text x="626" y="176" font-size="13">STRAIGHT = B' · (DE + D'E')</text>
+  <text x="626" y="208" font-size="13">LF = STRAIGHT + RIGHT     → IN1</text>
+  <text x="626" y="230" font-size="13">LB = LEFT + REV           → IN2</text>
+  <text x="626" y="252" font-size="13">RF = STRAIGHT + LEFT      → IN3</text>
+  <text x="626" y="274" font-size="13">RB = RIGHT + REV          → IN4</text>
+  <text x="626" y="306" font-size="12" fill="#5c5348">Never LF and LB together.</text>
+
+  <rect x="24" y="350" width="932" height="260" rx="10" fill="#fff" stroke="#2a2622"/>
+  <text x="40" y="378" font-size="14" font-weight="700">L298N wiring</text>
+  <text x="40" y="406" font-size="13">Motor A (left wheel): IN1 = LF, IN2 = LB</text>
+  <text x="40" y="428" font-size="13">Motor B (right wheel): IN3 = RF, IN4 = RB</text>
+  <text x="40" y="450" font-size="13">ENA and ENB jumpers ON (full speed)</text>
+  <text x="40" y="472" font-size="13">Motor supply: 7.4 V 2S pack. Logic/sensors: 5 V. One common ground.</text>
+  <text x="40" y="508" font-size="13" font-weight="700">Actions</text>
+  <text x="40" y="532" font-size="13">Straight  LF=1 LB=0 RF=1 RB=0     Left  LF=0 LB=1 RF=1 RB=0</text>
+  <text x="40" y="554" font-size="13">Right     LF=1 LB=0 RF=0 RB=1     Reverse (dead end) LF=0 LB=1 RF=0 RB=1</text>
+  <text x="40" y="586" font-size="12" fill="#5c5348">When REV is true, LEFT and RIGHT are forced false by the SOP (they never include ABC=111).</text>
+</svg>
