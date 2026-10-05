@@ -104,13 +104,13 @@ Counts: Straight 8 · Left 11 · Right 9 · Reverse 4.
 
 Five variables are mapped as **two 4-variable K-maps** split on **A**. Rows are **BC**, columns are **DE**, both in **Gray code** `00 01 11 10` so adjacent cells differ by one bit. Cell text is `mN=value`.
 
-PNG figures are in `kmaps/`. Groups used for the SOP are listed first.
+Diagrams are in `kmaps/` as SVG and PNG. Groups used for the SOP are listed first.
 
 ### REVERSE
 
 - **A · B · C** covers minterms [28, 29, 30, 31]. Dead end: walls on left, front, and right. Independent of D and E.
 
-![K-map REVERSE](kmaps/kmap_reverse.png)
+![K-map REVERSE](kmaps/kmap_reverse.svg)
 
 ### K-map for REVERSE — A = 0
 
@@ -137,7 +137,7 @@ PNG figures are in `kmaps/`. Groups used for the SOP are listed first.
 - **Ā · B · Ē** covers minterms [8, 10, 12, 14]. Wall ahead, both sides open, line not on E → left.
 - **D · B̄ · Ē** covers minterms [2, 6, 18, 22]. Front open; line slipped under D.
 
-![K-map LEFT](kmaps/kmap_left.png)
+![K-map LEFT](kmaps/kmap_left.svg)
 
 ### K-map for LEFT — A = 0
 
@@ -163,7 +163,7 @@ PNG figures are in `kmaps/`. Groups used for the SOP are listed first.
 - **B̄ · D̄ · E** covers minterms [1, 5, 17, 21]. Front open; line slipped under E.
 - **Č · D̄ · E** covers minterms [1, 5, 9, 17, 21]. Line under E (includes wall-ahead tie row 9).
 
-![K-map RIGHT](kmaps/kmap_right.png)
+![K-map RIGHT](kmaps/kmap_right.svg)
 
 ### K-map for RIGHT — A = 0
 
@@ -189,7 +189,7 @@ PNG figures are in `kmaps/`. Groups used for the SOP are listed first.
 - **B̄ · D̄ · Ē** covers minterms [0, 4, 16, 20]. Line in the D–E gap. Row 20 is the corridor 10100.
 - **B̄ · D · E** covers minterms [3, 7, 19, 23]. Wide line still centered.
 
-![K-map STRAIGHT](kmaps/kmap_straight.png)
+![K-map STRAIGHT](kmaps/kmap_straight.svg)
 
 ### K-map for STRAIGHT — A = 0
 
@@ -209,7 +209,7 @@ PNG figures are in `kmaps/`. Groups used for the SOP are listed first.
 | 11 | m28=0 | m29=0 | m31=0 | m30=0 |
 | 10 | m24=0 | m25=0 | m27=0 | m26=0 |
 
-Motor-pin K-maps (what is actually wired) are in `kmaps/kmap_motor_lf.png` through `kmap_motor_rb.png`.
+Motor-pin K-maps (what is actually wired) are in `kmaps/kmap_motor_lf.svg` through `kmap_motor_rb.svg`. Matching PNG copies are in the same folder.
 
 ## 7. Minimized Boolean equations
 
@@ -280,4 +280,4 @@ ENA and ENB jumpers left on. 7.4 V pack on the motor supply only. 5 V for gates 
 | `truth_table.csv` | Spreadsheet |
 | `boolean_equations.txt` | Equations only |
 | `circuit_diagram.svg` | Gate / L298N diagram |
-| `kmaps/*.png` | Karnaugh maps |
+| `kmaps/*.svg` and `kmaps/*.png` | Karnaugh maps |
