@@ -1,31 +1,30 @@
-# Line-following maze robot — Submission 2
+# LFR maze logic — Submission 2
 
-Digital Logic Design phase 1. Five sensors, 74HC gates, L298N. No Arduino.
+Digital Logic Design, Phase 1. Combinational 74HC logic for a 5-sensor line-following maze robot. No Arduino in this phase.
 
-**A, B, C = walls. D, E = line.** Dead end `A=B=C=1` → reverse both wheels.
+**Group:** Raman Kumar 32373, Kartar Kumar 32379, Bilal Ahmed 32351, Ramsha Qasim 32362.
 
-Group: Raman Kumar 32373, Kartar Kumar 32379, Bilal Ahmed 32351, Ramsha Qasim 32362.
+A, B, C are wall sensors (1 = wall close). D and E are the downward line sensors (1 = black). Straight is the black line in the gap between D and E (`10100` in a normal corridor). A dead end (`A=B=C=1`) drives both wheels backward.
 
-## Download for the instructor
+## Files to submit
 
-The file to submit is `LFR_Submission_2.zip` in this repo (`submission/LFR_Submission_2/` unzipped).
+Open the folder [`submission/LFR_Submission_2`](submission/LFR_Submission_2):
 
-## Equations
+| File | What it is |
+|---|---|
+| [LFR_Submission_2.md](submission/LFR_Submission_2/LFR_Submission_2.md) | Full report: 32-row table, K-maps, equations, circuit |
+| [truth_table.csv](submission/LFR_Submission_2/truth_table.csv) | Spreadsheet of all 32 combinations |
+| [boolean_equations.txt](submission/LFR_Submission_2/boolean_equations.txt) | Minimized equations |
+| [circuit_diagram.svg](submission/LFR_Submission_2/circuit_diagram.svg) | 74HC gate diagram into the L298N |
+| [kmaps/](submission/LFR_Submission_2/kmaps) | Karnaugh map images (SVG and PNG) |
 
-```
-LEFT     = A'BC + A'BD + A'B E' + D B' E'
-RIGHT    = A B C' + B' D' E + C' D' E
-STRAIGHT = B'(DE + D'E')
-REVERSE  = A B C
+K-maps: [REVERSE](submission/LFR_Submission_2/kmaps/kmap_reverse.svg), [LEFT](submission/LFR_Submission_2/kmaps/kmap_left.svg), [RIGHT](submission/LFR_Submission_2/kmaps/kmap_right.svg), [STRAIGHT](submission/LFR_Submission_2/kmaps/kmap_straight.svg).
 
-LF = STRAIGHT + RIGHT
-LB = LEFT + REVERSE
-RF = STRAIGHT + LEFT
-RB = RIGHT + REVERSE
-```
+Motor pins: LF = IN1 left forward, LB = IN2 left backward, RF = IN3 right forward, RB = IN4 right backward.
 
-Clone:
-
-```bash
-git clone https://github.com/KartarKumar/lfr-maze-logic.git
-```
+| Action | LF | LB | RF | RB |
+|---|---|---|---|---|
+| Straight | 1 | 0 | 1 | 0 |
+| Left | 0 | 1 | 1 | 0 |
+| Right | 1 | 0 | 0 | 1 |
+| Reverse (dead end) | 0 | 1 | 0 | 1 |
