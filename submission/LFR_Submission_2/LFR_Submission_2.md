@@ -18,7 +18,7 @@ The robot must follow a black line on a white maze floor without touching the wa
 
 A, B, and C detect **walls**. D and E look **down** at the line and straddle it. Straight motion means the tape sits in the gap between D and E (`D=0`, `E=0`).
 
-When **left, front, and right walls are all present** (`A=B=C=1`), that cell is a **dead end**. The robot **reverses** (both wheels backward). As soon as the front wall sensor goes to 0, the same table resumes: it will pivot left or right into the open side. That is still combinational: reverse *while* boxed in, turn *when* a side opens.
+When **left, front, and right walls are all present** (`A=B=C=1` after the inverters), that cell is a **dead end**. The robot **reverses** (both wheels backward). As soon as the front inverter output `B` falls to 0, the wall is gone and the same table pivots left or right into the open side. That is still combinational: reverse *while* boxed in, turn *when* a side opens. `B=0` is the inverter output, not the raw module pin. The module pin `b` is 0 while the wall is still there.
 
 ## 2. Sensor encoding
 
@@ -30,7 +30,19 @@ When **left, front, and right walls are all present** (`A=B=C=1`), that cell is 
 | D | Left downward | On black line | White floor |
 | E | Right downward | On black line | White floor |
 
-Hardware: 5 × TCRT5000 digital modules. If a module is active-low, invert it with the spare 74HC04 gate so the table below stays true.
+Hardware: 5 × TCRT5000 digital modules. **Every module is active low.** The output pin reads **0** when it sees a wall or the black line, and **1** when the path is open or the floor is white.
+
+The truth table, K-maps, and equations below use the signals **after** one inversion:
+
+| Module pin (what you wire) | 0 means | After 74HC04 |
+|---|---|---|
+| a | Left wall | A = NOT a |
+| b | Front wall | B = NOT b |
+| c | Right wall | C = NOT c |
+| d | Black under left line sensor | D = NOT d |
+| e | Black under right line sensor | E = NOT e |
+
+One 74HC04 has six inverters. Five of them create A, B, C, D, and E. The sixth is spare. Wherever an equation needs A', B', C', D', or E', wire the **module pin itself**. That pin is already the complement. A second inverter would undo the correction and make the robot do the opposite action.
 
 ## 3. Motor outputs (L298N)
 
@@ -251,7 +263,9 @@ Then:
 - `RF = STRAIGHT + LEFT` → IN3
 - `RB = RIGHT + REV` → IN4
 
-**ICs:** 74HC04 × 1 (five inverters), 74HC08 × 3 (AND), 74HC32 × 3 (OR).
+**ICs:** 74HC04 × 1 (five inverters for active-low sensors, one spare), 74HC08 × 3 (AND), 74HC32 × 3 (OR).
+
+The 74HC04 is the polarity stage, not a second copy of A–E. Equations such as `A' B C` are wired as `a · B · C`, with `a` taken from the left-wall module and `B` and `C` taken from the inverter outputs.
 
 ENA and ENB jumpers left on. 7.4 V pack on the motor supply only. 5 V for gates and sensors. One common ground. Do not parallel a power-bank 5 V with the L298N regulator.
 
@@ -266,9 +280,9 @@ ENA and ENB jumpers left on. 7.4 V pack on the motor supply only. 5 V for gates 
 ## 10. Assumptions and limits
 
 - One black line; no fork memory.
-- Combinational reverse does not *choose* the next turn by itself. After reverse, `B` falls to 0 and rules 2–8 pick the turn from the remaining sensors.
+- Combinational reverse does not *choose* the next turn by itself. After reverse, inverter output `B` falls to 0 and rules 2–8 pick the turn from the remaining sensors.
 - All-white D and E with the front clear is treated as centered, not as line-lost.
-- Wall sensors must be calibrated so 1 means a wall about 1 cm away. Black maze walls reflect poorly; test on the real wall.
+- All five modules are active low. Calibrate so the module pin falls to 0 about 1 cm from a wall, or when D or E is on the tape. Black maze walls reflect poorly; test on the real wall. The table's 1 is the inverter output, not the module pin.
 - Checkered start/finish squares are not logic symbols. Place the robot on the line just after the start checker.
 
 ## 11. Files in this zip
