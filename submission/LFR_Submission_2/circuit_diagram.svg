@@ -2,18 +2,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 640" font-family="DejaVu Sans, Arial, sans-serif">
   <rect width="980" height="640" fill="#faf6ee"/>
   <text x="28" y="36" font-size="20" font-weight="700" fill="#1c1915">LFR combinational circuit — 74HC gates to L298N</text>
-  <text x="28" y="58" font-size="12" fill="#5c5348">A,B,C = walls (1=close). D,E = line (1=black). Reverse on dead end A·B·C.</text>
+  <text x="28" y="58" font-size="12" fill="#5c5348">All 5 modules are active low (0 = detect). 74HC04 makes A–E (1 = wall or black). Raw pin is already A'–E'.</text>
 
   <rect x="24" y="78" width="170" height="250" rx="10" fill="#fff" stroke="#2a2622"/>
-  <text x="40" y="104" font-size="14" font-weight="700">Inputs</text>
-  <text x="40" y="128" font-size="13">A left wall</text>
-  <text x="40" y="148" font-size="13">B front wall</text>
-  <text x="40" y="168" font-size="13">C right wall</text>
-  <text x="40" y="188" font-size="13">D left line</text>
-  <text x="40" y="208" font-size="13">E right line</text>
-  <text x="40" y="240" font-size="12" fill="#5c5348">74HC04 makes</text>
-  <text x="40" y="258" font-size="12" fill="#5c5348">A', B', C', D', E'</text>
-  <text x="40" y="286" font-size="12">1 chip 74HC04</text>
+  <text x="40" y="102" font-size="14" font-weight="700">Active-low inputs</text>
+  <text x="40" y="124" font-size="12">a,b,c,d,e = module pins</text>
+  <text x="40" y="142" font-size="12">0 = wall or black line</text>
+  <text x="40" y="160" font-size="12">1 = open or white</text>
+  <text x="40" y="186" font-size="12" fill="#5c5348">74HC04 (5 of 6 gates)</text>
+  <text x="40" y="204" font-size="12">A=NOT a, B=NOT b</text>
+  <text x="40" y="222" font-size="12">C=NOT c, D=NOT d</text>
+  <text x="40" y="240" font-size="12">E=NOT e</text>
+  <text x="40" y="266" font-size="12" fill="#5c5348">Use the raw pin as</text>
+  <text x="40" y="284" font-size="12" fill="#5c5348">A', B', C', D', E'.</text>
+  <text x="40" y="306" font-size="12">Do not invert twice.</text>
 
   <rect x="220" y="78" width="360" height="250" rx="10" fill="#fff" stroke="#2a2622"/>
   <text x="236" y="104" font-size="14" font-weight="700">Shared products</text>
