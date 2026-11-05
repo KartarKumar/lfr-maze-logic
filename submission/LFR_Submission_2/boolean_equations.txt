@@ -1,21 +1,12 @@
-LFR Maze — Submission 2 — Minimized equations
+LFR Maze — Submission 2 — Motor equations
 Modules a,b,c,d,e are active low: 0 = wall or black line.
 A = NOT a, B = NOT b, C = NOT c, D = NOT d, E = NOT e (one 74HC04).
-The raw module pin is the complement: a = A', b = B', c = C', d = D', e = E'.
-Do not invert a second time.
+The raw module pin is the complement. Do not invert a second time.
 
-A,B,C = walls after the inverter (1 = wall). D,E = line after the inverter (1 = black).
+LF = B'(D' + E) + B C' (A + D' E)          IN1 left forward
+LB = B C + A' B (D + E') + B' D E'         IN2 left backward
+RF = B'(D + E') + B (C + A' (D + E'))      IN3 right forward
+RB = 0                                     IN4 tied to ground
 
-LEFT     = A'BC + A'BD + A'B E' + D B' E'
-RIGHT    = A B C' + B' D' E + C' D' E
-STRAIGHT = B' D E + B' D' E' = B'(DE + D'E')
-REVERSE  = A B C          (dead end: reverse)
-
-LF = STRAIGHT + RIGHT     (IN1, left forward)
-LB = LEFT + REVERSE       (IN2, left backward)
-   = B C + A' B D + A' B E' + B' D E'
-RF = STRAIGHT + LEFT      (IN3, right forward)
-RB = RIGHT + REVERSE      (IN4, right backward)
-   = A B + B' D' E + C' D' E
-
-A' means NOT A.
+Dead end A B C is a U-turn: LB=1 and RF=1.
+A right turn stops the right wheel: LF=1 and RF=0.
